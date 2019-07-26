@@ -482,6 +482,7 @@ function PresentationRoutineEnd() {
     if (typeof thisComponent.setAutoDraw === 'function') {
       thisComponent.setAutoDraw(false);
     }});
+  pres_text.text = ''
   // the Routine "Presentation" was not non-slip safe, so reset the non-slip timer
   routineTimer.reset();
   
@@ -639,7 +640,7 @@ function RecallRoutineEnd() {
   psychoJS.experiment.addData("response", current_resp);
   
   allResponses.push(correct)
-  
+  pts_response.text = '';
   // the Routine "Recall" was not non-slip safe, so reset the non-slip timer
   routineTimer.reset();
   
@@ -728,7 +729,7 @@ function FeedbackRoutineEnd() {
       trials.finished = true;
       blocks.finished = true;
   } else if (allResponses.slice(-2).reduce((a,b)=>a+b) === 2) {
-      trials.finished = true;
+      currentLoop.finished = true;
       allResponses = [];
   }
   return Scheduler.Event.NEXT;
