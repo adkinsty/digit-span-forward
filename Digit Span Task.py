@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v3.1.5),
-    on July 26, 2019, at 16:39
+    on July 26, 2019, at 16:38
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -48,7 +48,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\Users\\lpzdb\\pavloviaDemos\\DPS\\Digit Span Task_lastrun.py',
+    originPath='C:\\Users\\lpzdb\\pavloviaDemos\\DPS\\Digit Span Task.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -373,7 +373,6 @@ for thisBlock in blocks:
         # update component parameters for each repeat
         key_resp_2.keys = [];
         key_resp_2.rt = None;
-        key_resp_2.rt = []
         # keep track of which components have finished
         RecallComponents = [recall_text, key_resp_2, pts_response]
         for thisComponent in RecallComponents:
