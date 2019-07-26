@@ -554,14 +554,14 @@ function RecallRoutineEachFrame() {
   }
   
   if (key_resp_2.keys !== undefined && key_resp_2.keys.length > 0) {
-      if (key_resp_2.keys[-1] === 'backspace') {
+      if (key_resp_2.keys[key_resp_2.keys.length - 1] === 'backspace') {
           try {
               key_resp_2.keys.pop(key_resp_2.keys.length-1);
               key_resp_2.keys.pop(key_resp_2.keys.length-1);
           } catch (err) {
               console.log("No need to backspace")
           }
-      } else if (key_resp_2.keys[-1] === 'return') {
+      } else if (key_resp_2.keys[key_resp_2.keys.length - 1] === 'return') {
           key_resp_2.keys.pop(key_resp_2.keys.length-1);
           continueRoutine = false;
       }
