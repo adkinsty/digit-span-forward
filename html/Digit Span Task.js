@@ -553,7 +553,7 @@ function RecallRoutineEachFrame() {
     }
   }
   
-  if (key_resp_2.length > 0) {
+  if (key_resp_2.keys.length > 0) {
       if (key_resp_2.keys[-1] === 'backspace') {
           try {
               key_resp_2.keys.pop(key_resp_2.keys.length-1);
