@@ -56,7 +56,6 @@ dialogCancelScheduler.add(quitPsychoJS, '', false);
 
 psychoJS.start({expName, expInfo});
 
-var frameDur;
 function updateInfo() {
   expInfo['date'] = util.MonotonicClock.getDateStr();  // add a simple timestamp
   expInfo['expName'] = expName;
@@ -76,24 +75,6 @@ function updateInfo() {
   return Scheduler.Event.NEXT;
 }
 
-var InstructionsClock;
-var instructions;
-var key_resp;
-var PresentationClock;
-var fixation;
-var pres_text;
-var RecallClock;
-var recall_text;
-var key_resp_2;
-var allResponses;
-var current_resp;
-var pts_response;
-var FeedbackClock;
-var feedback_text;
-var EndClock;
-var thank_you;
-var globalClock;
-var routineTimer;
 function experimentInit() {
   // Initialize components for Routine "Instructions"
   InstructionsClock = new util.Clock();
@@ -196,9 +177,6 @@ function experimentInit() {
   return Scheduler.Event.NEXT;
 }
 
-var t;
-var frameN;
-var InstructionsComponents;
 function InstructionsRoutineBegin() {
   //------Prepare to start Routine 'Instructions'-------
   t = 0;
@@ -219,7 +197,6 @@ function InstructionsRoutineBegin() {
   return Scheduler.Event.NEXT;
 }
 
-var continueRoutine;
 function InstructionsRoutineEachFrame() {
   //------Loop for each frame of Routine 'Instructions'-------
   let continueRoutine = true; // until we're told otherwise
@@ -291,7 +268,6 @@ function InstructionsRoutineEachFrame() {
   }
 }
 
-
 function InstructionsRoutineEnd() {
   //------Ending Routine 'Instructions'-------
   for (const thisComponent of InstructionsComponents) {
@@ -312,8 +288,6 @@ function InstructionsRoutineEnd() {
   return Scheduler.Event.NEXT;
 }
 
-var blocks;
-var currentLoop;
 function blocksLoopBegin(thisScheduler) {
   // set up handler to look after randomisation of conditions etc
   blocks = new TrialHandler({
@@ -338,7 +312,6 @@ function blocksLoopBegin(thisScheduler) {
   return Scheduler.Event.NEXT;
 }
 
-var trials;
 function trialsLoopBegin(thisScheduler) {
   // set up handler to look after randomisation of conditions etc
   trials = new TrialHandler({
@@ -368,13 +341,11 @@ function trialsLoopBegin(thisScheduler) {
   return Scheduler.Event.NEXT;
 }
 
-
 function trialsLoopEnd() {
   psychoJS.experiment.removeLoop(trials);
 
   return Scheduler.Event.NEXT;
 }
-
 
 function blocksLoopEnd() {
   psychoJS.experiment.removeLoop(blocks);
@@ -382,8 +353,6 @@ function blocksLoopEnd() {
   return Scheduler.Event.NEXT;
 }
 
-var nList;
-var PresentationComponents;
 function PresentationRoutineBegin() {
   //------Prepare to start Routine 'Presentation'-------
   t = 0;
@@ -404,8 +373,6 @@ function PresentationRoutineBegin() {
   return Scheduler.Event.NEXT;
 }
 
-var frameRemains;
-var i;
 function PresentationRoutineEachFrame() {
   //------Loop for each frame of Routine 'Presentation'-------
   let continueRoutine = true; // until we're told otherwise
@@ -473,7 +440,6 @@ function PresentationRoutineEachFrame() {
   }
 }
 
-
 function PresentationRoutineEnd() {
   //------Ending Routine 'Presentation'-------
   for (const thisComponent of PresentationComponents) {
@@ -487,7 +453,6 @@ function PresentationRoutineEnd() {
   return Scheduler.Event.NEXT;
 }
 
-var RecallComponents;
 function RecallRoutineBegin() {
   //------Prepare to start Routine 'Recall'-------
   t = 0;
@@ -508,7 +473,6 @@ function RecallRoutineBegin() {
   
   return Scheduler.Event.NEXT;
 }
-
 
 function RecallRoutineEachFrame() {
   //------Loop for each frame of Routine 'Recall'-------
@@ -553,7 +517,7 @@ function RecallRoutineEachFrame() {
     }
   }
   
-  if (key_resp_2.keys.length > 0) {
+  if (key_resp_2 !=== undefined && key_resp_2.keys.length > 0) {
       if (key_resp_2.keys[-1] === 'backspace') {
           try {
               key_resp_2.keys.pop(key_resp_2.keys.length-1);
@@ -611,8 +575,6 @@ function RecallRoutineEachFrame() {
   }
 }
 
-var correct;
-var msg;
 function RecallRoutineEnd() {
   //------Ending Routine 'Recall'-------
   for (const thisComponent of RecallComponents) {
@@ -646,7 +608,6 @@ function RecallRoutineEnd() {
   return Scheduler.Event.NEXT;
 }
 
-var FeedbackComponents;
 function FeedbackRoutineBegin() {
   //------Prepare to start Routine 'Feedback'-------
   t = 0;
@@ -665,7 +626,6 @@ function FeedbackRoutineBegin() {
   
   return Scheduler.Event.NEXT;
 }
-
 
 function FeedbackRoutineEachFrame() {
   //------Loop for each frame of Routine 'Feedback'-------
@@ -713,7 +673,6 @@ function FeedbackRoutineEachFrame() {
   }
 }
 
-
 function FeedbackRoutineEnd() {
   //------Ending Routine 'Feedback'-------
   for (const thisComponent of FeedbackComponents) {
@@ -735,7 +694,6 @@ function FeedbackRoutineEnd() {
   return Scheduler.Event.NEXT;
 }
 
-var EndComponents;
 function EndRoutineBegin() {
   //------Prepare to start Routine 'End'-------
   t = 0;
@@ -753,7 +711,6 @@ function EndRoutineBegin() {
   
   return Scheduler.Event.NEXT;
 }
-
 
 function EndRoutineEachFrame() {
   //------Loop for each frame of Routine 'End'-------
@@ -801,7 +758,6 @@ function EndRoutineEachFrame() {
   }
 }
 
-
 function EndRoutineEnd() {
   //------Ending Routine 'End'-------
   for (const thisComponent of EndComponents) {
@@ -811,7 +767,6 @@ function EndRoutineEnd() {
   }
   return Scheduler.Event.NEXT;
 }
-
 
 function endLoopIteration({thisScheduler, isTrials=true}) {
   // ------Prepare for next entry------
@@ -830,7 +785,6 @@ function endLoopIteration({thisScheduler, isTrials=true}) {
   };
 }
 
-
 function importConditions(loop) {
   const trialIndex = loop.getTrialIndex();
   return function () {
@@ -839,7 +793,6 @@ function importConditions(loop) {
     return Scheduler.Event.NEXT;
     };
 }
-
 
 function quitPsychoJS(message, isCompleted) {
   // Check for and save orphaned data
