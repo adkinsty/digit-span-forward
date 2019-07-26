@@ -509,7 +509,7 @@ function RecallRoutineBegin() {
   return Scheduler.Event.NEXT;
 }
 
-
+var current_resp;
 function RecallRoutineEachFrame() {
   //------Loop for each frame of Routine 'Recall'-------
   let continueRoutine = true; // until we're told otherwise
@@ -566,6 +566,8 @@ function RecallRoutineEachFrame() {
           continueRoutine = false;
       }
   }
+  
+  current_resp = key_resp_2.keys.join('');
   
   // *pts_response* updates
   if (t >= 0 && pts_response.status === PsychoJS.Status.NOT_STARTED) {
