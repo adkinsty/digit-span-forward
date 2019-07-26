@@ -2,13 +2,13 @@
  * Digit Span Task Test *
  ************************/
 
-import { PsychoJS } from 'https://pavlovia.org/lib/core.js';
-import * as core from 'https://pavlovia.org/lib/core.js';
-import { TrialHandler } from 'https://pavlovia.org/lib/data.js';
-import { Scheduler } from 'https://pavlovia.org/lib/util.js';
-import * as util from 'https://pavlovia.org/lib/util.js';
-import * as visual from 'https://pavlovia.org/lib/visual.js';
-import { Sound } from 'https://pavlovia.org/lib/sound.js';
+import { PsychoJS } from 'https://pavlovia.org/lib/core-3.1.5.js';
+import * as core from 'https://pavlovia.org/lib/core-3.1.5.js';
+import { TrialHandler } from 'https://pavlovia.org/lib/data-3.1.5.js';
+import { Scheduler } from 'https://pavlovia.org/lib/util-3.1.5.js';
+import * as util from 'https://pavlovia.org/lib/util-3.1.5.js';
+import * as visual from 'https://pavlovia.org/lib/visual-3.1.5.js';
+import { Sound } from 'https://pavlovia.org/lib/sound-3.1.5.js';
 
 // init psychoJS:
 var psychoJS = new PsychoJS({
