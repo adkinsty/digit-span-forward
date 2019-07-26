@@ -52,7 +52,8 @@ var frameDur;
 function updateInfo() {
   expInfo['date'] = util.MonotonicClock.getDateStr();  // add a simple timestamp
   expInfo['expName'] = expName;
-  expInfo['psychopyVersion'] = '3.1.2';
+  expInfo['psychopyVersion'] = '3.1.5';
+  expInfo['OS'] = window.navigator.platform;
 
   // store frame rate of monitor if we can measure it successfully
   expInfo['frameRate'] = psychoJS.window.getActualFrameRate();
@@ -69,11 +70,13 @@ function updateInfo() {
 
 var InstructionsClock;
 var instructions;
+var key_resp;
 var PresentationClock;
 var fixation;
 var pres_text;
 var RecallClock;
 var recall_text;
+var key_resp_2;
 var pts_response;
 var FeedbackClock;
 var feedback_text;
@@ -94,6 +97,8 @@ function experimentInit() {
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
+  
+  key_resp = new core.Keyboard({psychoJS, clock: new util.Clock(), waitForStart: true});
   
   // Initialize components for Routine "Presentation"
   PresentationClock = new util.Clock();
@@ -131,6 +136,8 @@ function experimentInit() {
     color: new util.Color('white'),  opacity: 1,
     depth: 0.0 
   });
+  
+  key_resp_2 = new core.Keyboard({psychoJS, clock: new util.Clock(), waitForStart: true});
   
   pts_response = new visual.TextStim({
     win: psychoJS.window,
@@ -178,7 +185,6 @@ function experimentInit() {
 
 var t;
 var frameN;
-var key_resp;
 var InstructionsComponents;
 function InstructionsRoutineBegin() {
   //------Prepare to start Routine 'Instructions'-------
@@ -186,8 +192,8 @@ function InstructionsRoutineBegin() {
   InstructionsClock.reset(); // clock
   frameN = -1;
   // update component parameters for each repeat
-  key_resp = new core.BuilderKeyResponse(psychoJS);
-  
+  key_resp.keys = undefined;
+  key_resp.rt = undefined;
   // keep track of which components have finished
   InstructionsComponents = [];
   InstructionsComponents.push(instructions);
@@ -226,21 +232,22 @@ function InstructionsRoutineEachFrame() {
     key_resp.frameNStart = frameN;  // exact frame index
     key_resp.status = PsychoJS.Status.STARTED;
     // keyboard checking is just starting
-    psychoJS.window.callOnFlip(function() { key_resp.clock.reset(); }); // t = 0 on screen flip
-    psychoJS.eventManager.clearEvents({eventType:'keyboard'});
+    psychoJS.window.callOnFlip(function() { key_resp.clock.reset(); });  // t=0 on next screen flip
+    psychoJS.window.callOnFlip(function() { key_resp.start(); }); // start on screen flip
+    psychoJS.window.callOnFlip(function() { key_resp.clearEvents(); });
   }
 
   if (key_resp.status === PsychoJS.Status.STARTED) {
-    let theseKeys = psychoJS.eventManager.getKeys({keyList:['space']});
+    let theseKeys = key_resp.getKeys({keyList: ['space'], waitRelease: false});
     
     // check for quit:
-    if (theseKeys.indexOf('escape') > -1) {
+    if (theseKeys.length > 0 && theseKeys[0].name === 'escape') {
       psychoJS.experiment.experimentEnded = true;
     }
     
     if (theseKeys.length > 0) {  // at least one key was pressed
-      key_resp.keys = theseKeys[theseKeys.length-1];  // just the last key pressed
-      key_resp.rt = key_resp.clock.getTime();
+      key_resp.keys = theseKeys[0].name;  // just the last key pressed
+      key_resp.rt = theseKeys[0].rt;
       // a response ends the routine
       continueRoutine = false;
     }
@@ -278,18 +285,13 @@ function InstructionsRoutineEnd() {
     if (typeof thisComponent.setAutoDraw === 'function') {
       thisComponent.setAutoDraw(false);
     }});
-  
-  // check responses
-  if (key_resp.keys === undefined || key_resp.keys.length === 0) {    // No response was made
-      key_resp.keys = undefined;
-  }
-  
   psychoJS.experiment.addData('key_resp.keys', key_resp.keys);
-  if (typeof key_resp.keys !== 'undefined') {  // we had a response
+  if (typeof key_resp.keys !== undefined) {  // we had a response
       psychoJS.experiment.addData('key_resp.rt', key_resp.rt);
       routineTimer.reset();
       }
   
+  key_resp.stop();
   // the Routine "Instructions" was not non-slip safe, so reset the non-slip timer
   routineTimer.reset();
   
@@ -322,7 +324,7 @@ function blocksLoopBegin(thisScheduler) {
     thisScheduler.add(trialsLoopBegin, trialsLoopScheduler);
     thisScheduler.add(trialsLoopScheduler);
     thisScheduler.add(trialsLoopEnd);
-    thisScheduler.add(endLoopIteration(thisScheduler, thisBlock));
+    thisScheduler.add(endLoopIteration({thisScheduler, isTrials : true}));
   }
 
   return Scheduler.Event.NEXT;
@@ -357,7 +359,7 @@ function trialsLoopBegin(thisScheduler) {
     thisScheduler.add(FeedbackRoutineBegin);
     thisScheduler.add(FeedbackRoutineEachFrame);
     thisScheduler.add(FeedbackRoutineEnd);
-    thisScheduler.add(endLoopIteration(thisScheduler, thisTrial));
+    thisScheduler.add(endLoopIteration({thisScheduler, isTrials : true}));
   }
 
   return Scheduler.Event.NEXT;
@@ -377,6 +379,7 @@ function blocksLoopEnd() {
   return Scheduler.Event.NEXT;
 }
 
+var nList;
 var PresentationComponents;
 function PresentationRoutineBegin() {
   //------Prepare to start Routine 'Presentation'-------
@@ -384,6 +387,8 @@ function PresentationRoutineBegin() {
   PresentationClock.reset(); // clock
   frameN = -1;
   // update component parameters for each repeat
+  // Convert sequence to list
+  nList = digits.toString().split('').map((i)=>Number(i))
   // keep track of which components have finished
   PresentationComponents = [];
   PresentationComponents.push(fixation);
@@ -398,6 +403,7 @@ function PresentationRoutineBegin() {
 }
 
 var frameRemains;
+var i;
 function PresentationRoutineEachFrame() {
   //------Loop for each frame of Routine 'Presentation'-------
   let continueRoutine = true; // until we're told otherwise
@@ -427,6 +433,18 @@ function PresentationRoutineEachFrame() {
     pres_text.setAutoDraw(true);
   }
 
+  // Convert time ti a list index
+  i = Math.floor(t-1);
+  
+  // Index current number in the list
+  // or end routine if all numbers presented
+  if (i === nList.length) {
+      continueRoutine = false;
+  } else {
+      pres_text.text = nList[i]
+  }
+  
+  
   // check for quit (typically the Esc key)
   if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
     return psychoJS.quit('The [Escape] key was pressed. Goodbye!', false);
@@ -465,7 +483,6 @@ function PresentationRoutineEnd() {
   return Scheduler.Event.NEXT;
 }
 
-var key_resp_2;
 var RecallComponents;
 function RecallRoutineBegin() {
   //------Prepare to start Routine 'Recall'-------
@@ -473,8 +490,8 @@ function RecallRoutineBegin() {
   RecallClock.reset(); // clock
   frameN = -1;
   // update component parameters for each repeat
-  key_resp_2 = new core.BuilderKeyResponse(psychoJS);
-  
+  key_resp_2.keys = undefined;
+  key_resp_2.rt = undefined;
   // keep track of which components have finished
   RecallComponents = [];
   RecallComponents.push(recall_text);
@@ -514,21 +531,22 @@ function RecallRoutineEachFrame() {
     key_resp_2.frameNStart = frameN;  // exact frame index
     key_resp_2.status = PsychoJS.Status.STARTED;
     // keyboard checking is just starting
-    psychoJS.window.callOnFlip(function() { key_resp_2.clock.reset(); }); // t = 0 on screen flip
-    psychoJS.eventManager.clearEvents({eventType:'keyboard'});
+    psychoJS.window.callOnFlip(function() { key_resp_2.clock.reset(); });  // t=0 on next screen flip
+    psychoJS.window.callOnFlip(function() { key_resp_2.start(); }); // start on screen flip
+    psychoJS.window.callOnFlip(function() { key_resp_2.clearEvents(); });
   }
 
   if (key_resp_2.status === PsychoJS.Status.STARTED) {
-    let theseKeys = psychoJS.eventManager.getKeys({keyList:['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'return', 'backspace']});
+    let theseKeys = key_resp_2.getKeys({keyList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'return', 'backspace'], waitRelease: false});
     
     // check for quit:
-    if (theseKeys.indexOf('escape') > -1) {
+    if (theseKeys.length > 0 && theseKeys[0].name === 'escape') {
       psychoJS.experiment.experimentEnded = true;
     }
     
     if (theseKeys.length > 0) {  // at least one key was pressed
-      key_resp_2.keys = key_resp_2.keys.concat(theseKeys);  // storing all keys
-      key_resp_2.rt = key_resp_2.rt.concat(key_resp_2.clock.getTime());
+      key_resp_2.keys = [].concat(key_resp_2.keys, theseKeys[0].name).filter((i) => i !== undefined);  // storing all keys
+      key_resp_2.rt = [].concat(key_resp_2.rt, theseKeys[0].rt).filter((i) => i !== undefined);
     }
   }
   
@@ -577,17 +595,12 @@ function RecallRoutineEnd() {
     if (typeof thisComponent.setAutoDraw === 'function') {
       thisComponent.setAutoDraw(false);
     }});
-  
-  // check responses
-  if (key_resp_2.keys === undefined || key_resp_2.keys.length === 0) {    // No response was made
-      key_resp_2.keys = undefined;
-  }
-  
   psychoJS.experiment.addData('key_resp_2.keys', key_resp_2.keys);
-  if (typeof key_resp_2.keys !== 'undefined') {  // we had a response
+  if (typeof key_resp_2.keys !== undefined) {  // we had a response
       psychoJS.experiment.addData('key_resp_2.rt', key_resp_2.rt);
       }
   
+  key_resp_2.stop();
   // the Routine "Recall" was not non-slip safe, so reset the non-slip timer
   routineTimer.reset();
   
@@ -748,13 +761,17 @@ function EndRoutineEnd() {
 }
 
 
-function endLoopIteration(thisScheduler, thisTrial) {
+function endLoopIteration({thisScheduler, isTrials=true}) {
   // ------Prepare for next entry------
   return function () {
     // ------Check if user ended loop early------
     if (currentLoop.finished) {
+      // Check for and save orphaned data
+      if (Object.keys(psychoJS.experiment._thisEntry).length > 0) {
+        psychoJS.experiment.nextEntry();
+      }
       thisScheduler.stop();
-    } else if (typeof thisTrial === 'undefined' || !('isTrials' in thisTrial) || thisTrial.isTrials) {
+    } else if (isTrials) {
       psychoJS.experiment.nextEntry();
     }
   return Scheduler.Event.NEXT;
@@ -773,6 +790,10 @@ function importConditions(loop) {
 
 
 function quitPsychoJS(message, isCompleted) {
+  // Check for and save orphaned data
+  if (Object.keys(psychoJS.experiment._thisEntry).length > 0) {
+    psychoJS.experiment.nextEntry();
+  }
   psychoJS.window.close();
   psychoJS.quit({message: message, isCompleted: isCompleted});
 
