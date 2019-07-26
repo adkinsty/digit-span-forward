@@ -225,7 +225,7 @@
       </KeyboardComponent>
       <CodeComponent name="check_keys">
         <Param name="Begin Experiment" updates="constant" val="# Store responses&amp;#10;allResponses = []" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="// Store responses&amp;#10;allResponses = []" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="// Store responses&amp;#10;allResponses = []&amp;#10;current_resp = '';" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Both" valType="str"/>

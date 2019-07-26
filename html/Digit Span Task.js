@@ -86,6 +86,7 @@ var RecallClock;
 var recall_text;
 var key_resp_2;
 var allResponses;
+var current_resp;
 var pts_response;
 var FeedbackClock;
 var feedback_text;
@@ -150,6 +151,7 @@ function experimentInit() {
   
   // Store responses
   allResponses = []
+  current_resp = '';
   pts_response = new visual.TextStim({
     win: psychoJS.window,
     name: 'pts_response',
