@@ -729,7 +729,7 @@ function FeedbackRoutineEnd() {
       trials.finished = true;
       blocks.finished = true;
   } else if (allResponses.slice(-2).reduce((a,b)=>a+b) === 2) {
-      currentLoop.finished = true;
+      trials.finished = true;
       allResponses = [];
   }
   return Scheduler.Event.NEXT;
