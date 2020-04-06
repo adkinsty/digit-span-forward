@@ -1,0 +1,7 @@
+key_resp.keys,key_resp.rt,key_resp_2.keys,key_resp_2.rt,Incorrect,response,blocks.thisRepN,blocks.thisTrialN,blocks.thisN,blocks.thisIndex,blocks.ran,blocks.order,condition_file,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,trials.order,digitSpan,digits,participant,session,date,expName,psychopyVersion,OS,frameRate,correct
+space,12.00399995,"[""7"",""2"",""3""]","[1.8299999237060547,5.166000127792358,6.1549999713897705,7.383000135421753]",0,723,1,0,10,0,1,9,three.xlsx,1,0,3,0,1,2,3,217,me,001,2020-04-06_18h23.39.833,Digit Span Task,3.1.5,Win32,60,
+,,"[""4"",""8"",""6""]","[1.4519999027252197,2.6419999599456787,3.0829999446868896,3.746999979019165]",,486,1,0,10,0,1,9,three.xlsx,1,0,3,1,1,2,3,486,me,001,2020-04-06_18h23.39.833,Digit Span Task,3.1.5,Win32,60,1
+,,"[""7"",""6""]","[1.121000051498413,1.5520000457763672,2.6130001544952393]",0,76,1,0,10,0,1,9,three.xlsx,1,0,3,2,1,2,3,760,me,001,2020-04-06_18h23.39.833,Digit Span Task,3.1.5,Win32,60,
+,,,,,,1,0,10,0,1,9,three.xlsx,,,,,,,,,me,001,2020-04-06_18h23.39.833,Digit Span Task,3.1.5,Win32,60,
+,,"[""3"",""1"",""4"",""1""]","[1.6420001983642578,2.139000177383423,2.5420000553131104,2.7860000133514404,3.56000018119812]",,3141,1,0,10,1,1,9,four.xlsx,1,0,3,0,1,2,4,3141,me,001,2020-04-06_18h23.39.833,Digit Span Task,3.1.5,Win32,60,1
+,,"[""6"",""3"",""5"",""1""]","[1.3470001220703125,2.064000129699707,2.640000104904175,3.069999933242798,3.5410001277923584]",,6351,1,0,10,1,1,9,four.xlsx,1,0,3,1,1,2,4,6351,me,001,2020-04-06_18h23.39.833,Digit Span Task,3.1.5,Win32,60,1
