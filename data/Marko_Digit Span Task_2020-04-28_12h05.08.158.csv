@@ -1,0 +1,2 @@
+key_resp.keys,key_resp.rt,key_resp_2.keys,key_resp_2.rt,Incorrect,response,blocks.thisRepN,blocks.thisTrialN,blocks.thisN,blocks.thisIndex,blocks.ran,blocks.order,condition_file,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,trials.order,digitSpan,digits,participant,session,date,expName,psychopyVersion,OS,frameRate
+space,15.75999999,[],[3.2929999828338623],0,,1,0,10,0,1,9,three.xlsx,1,0,3,0,1,2,3,217,Marko,001,2020-04-28_12h05.08.158,Digit Span Task,3.1.5,Win32,60
