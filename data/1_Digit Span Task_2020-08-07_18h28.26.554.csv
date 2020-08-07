@@ -1,0 +1,3 @@
+key_resp.keys,key_resp.rt,key_resp_2.keys,key_resp_2.rt,correct,response,blocks.thisRepN,blocks.thisTrialN,blocks.thisN,blocks.thisIndex,blocks.ran,blocks.order,condition_file,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,trials.order,digitSpan,digits,participant,session,date,expName,psychopyVersion,OS,frameRate
+space,34.18099999,"[""2"",""1"",""7""]","[1.5879998207092285,2.124999761581421,2.9799997806549072,3.2079999446868896]",1,217,1,0,10,0,1,9,three.xlsx,1,0,3,0,1,2,3,217,1,001,2020-08-07_18h28.26.554,Digit Span Task,3.1.5,Win32,60
+,,"[""4"",""8"",""6""]","[2.2309999465942383,2.363999843597412,2.546999931335449,3.051999807357788]",1,486,1,0,10,0,1,9,three.xlsx,1,0,3,1,1,2,3,486,1,001,2020-08-07_18h28.26.554,Digit Span Task,3.1.5,Win32,60
