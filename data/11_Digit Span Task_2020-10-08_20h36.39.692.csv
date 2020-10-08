@@ -1,0 +1,6 @@
+key_resp.keys,key_resp.rt,key_resp_2.keys,key_resp_2.rt,correct,response,blocks.thisRepN,blocks.thisTrialN,blocks.thisN,blocks.thisIndex,blocks.ran,blocks.order,condition_file,trials.thisRepN,trials.thisTrialN,trials.thisN,trials.thisIndex,trials.ran,trials.order,digitSpan,digits,participant,session,date,expName,psychopyVersion,OS,frameRate,Incorrect
+space,29.76399994,"[""2"",""1"",""7""]","[1.6429998874664307,2.176999807357788,2.9669997692108154,4.2749998569488525]",1,217,1,0,10,0,1,9,three.xlsx,1,0,3,0,1,2,3,217,11,001,2020-10-08_20h36.39.692,Digit Span Task,3.1.5,MacIntel,60,
+,,"[""1"",""8"",""6""]","[2.003999710083008,2.5839998722076416,3.0729997158050537,3.8409998416900635]",,186,1,0,10,0,1,9,three.xlsx,1,0,3,1,1,2,3,486,11,001,2020-10-08_20h36.39.692,Digit Span Task,3.1.5,MacIntel,60,0
+,,"[""7"",""6"",""0""]","[1.2769997119903564,1.42799973487854,1.7799997329711914,2.3489997386932373]",1,760,1,0,10,0,1,9,three.xlsx,1,0,3,2,1,2,3,760,11,001,2020-10-08_20h36.39.692,Digit Span Task,3.1.5,MacIntel,60,
+,,,,,,1,0,10,0,1,9,three.xlsx,,,,,,,,,11,001,2020-10-08_20h36.39.692,Digit Span Task,3.1.5,MacIntel,60,
+,,"[""3"",""1"",""4"",""1""]","[1.1969997882843018,1.311999797821045,1.5649998188018799,1.7959997653961182,2.316999673843384]",1,3141,1,0,10,1,1,9,four.xlsx,1,0,3,0,1,2,4,3141,11,001,2020-10-08_20h36.39.692,Digit Span Task,3.1.5,MacIntel,60,
