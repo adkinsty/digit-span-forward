@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="3.1.5">
+<PsychoPy2experiment encoding="utf-8" version="2020.2.10">
   <Settings>
+    <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
+    <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
     <Param name="Completed URL" updates="None" val="" valType="str"/>
+    <Param name="Data file delimiter" updates="None" val="auto" valType="str"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
     <Param name="Experiment info" updates="None" val="{'participant': '', 'session': '001'}" valType="code"/>
@@ -11,6 +14,7 @@
     <Param name="Incomplete URL" updates="None" val="" valType="str"/>
     <Param name="JS libs" updates="None" val="packaged" valType="str"/>
     <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
+    <Param name="Resources" updates="None" val="[]" valType="fileList"/>
     <Param name="Save csv file" updates="None" val="False" valType="bool"/>
     <Param name="Save excel file" updates="None" val="False" valType="bool"/>
     <Param name="Save log file" updates="None" val="True" valType="bool"/>
@@ -100,6 +104,8 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
       <CodeComponent name="feedback_code">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
@@ -109,8 +115,8 @@
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="&amp;#10;// for incorrect, check that two responses exist&amp;#10;// and that their sum of last two responses is zero&amp;#10;&amp;#10;if (allResponses.length &gt;= 2 &amp;&amp; allResponses.slice(-2).reduce((a,b)=&gt;a+b) === 0) {&amp;#10;    trials.finished = true;&amp;#10;    blocks.finished = true;&amp;#10;} else if (allResponses.slice(-2).reduce((a,b)=&gt;a+b) === 2) {&amp;#10;    trials.finished = true;&amp;#10;    allResponses = [];&amp;#10;}" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="&amp;#10;# for incorrect, check that two responses exist&amp;#10;# and that their sum of last two responses is zero&amp;#10;if len(allResponses) &gt;= 2 and sum(allResponses[-2:]) == 0:&amp;#10;    trials.finished = True&amp;#10;    blocks.finished = True&amp;#10;# If sum of last two responses is 2, move to next sequence&amp;#10;elif sum(allResponses[-2:]) == 2:&amp;#10;    trials.finished = True&amp;#10;    allResponses = []" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="&amp;#10;// for incorrect, check that two responses exist&amp;#10;// and that their sum of last two responses is zero&amp;#10;&amp;#10;if (allResponses.length &gt;= 2 &amp;&amp; allResponses.slice(-2).reduce((a,b)=&gt;a+b) === 0) {&amp;#10;    trials.finished = true;&amp;#10;    blocks.finished = true;&amp;#10;} else if (allResponses.slice(-2).reduce((a,b)=&gt;a+b) === 2) {&amp;#10;    trials.finished = true;&amp;#10;    blocks.finished = false;&amp;#10;    allResponses = [];&amp;#10;}" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="&amp;#10;# for incorrect, check that two responses exist&amp;#10;# and that their sum of last two responses is zero&amp;#10;if len(allResponses) &gt;= 2 and sum(allResponses[-2:]) == 0:&amp;#10;    trials.finished = True&amp;#10;    blocks.finished = True&amp;#10;# If sum of last two responses is 2, move to next sequence&amp;#10;elif sum(allResponses[-2:]) == 2:&amp;#10;    trials.finished = True&amp;#10;    blocks.finished = False&amp;#10;    allResponses = []" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="feedback_code" valType="code"/>
       </CodeComponent>
@@ -165,6 +171,8 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
       <CodeComponent name="pres_code">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="// Convert sequence to list&amp;#10;nList = digits.toString().split('').map((i)=&gt;Number(i))" valType="extendedCode"/>
@@ -224,6 +232,8 @@
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
       <CodeComponent name="check_keys">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="# Store responses&amp;#10;allResponses = []" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="// Store responses&amp;#10;allResponses = []&amp;#10;current_resp = '';" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
