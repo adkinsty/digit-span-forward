@@ -732,8 +732,10 @@ function FeedbackRoutineEnd() {
   if (allResponses.length >= 2 && allResponses.slice(-2).reduce((a,b)=>a+b) === 0) {
       trials.finished = true;
       blocks.finished = true;
+      print("blocks.finished = true;");
   } else if (allResponses.slice(-2).reduce((a,b)=>a+b) === 2) {
       trials.finished = true;
+      print("trials.finished = true;");
       allResponses = [];
   }
   return Scheduler.Event.NEXT;
