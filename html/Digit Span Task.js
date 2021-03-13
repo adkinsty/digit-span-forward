@@ -732,11 +732,15 @@ function FeedbackRoutineEnd() {
   if (allResponses.length >= 2 && allResponses.slice(-2).reduce((a,b)=>a+b) === 0) {
       trials.finished = true;
       blocks.finished = true;
-      print("blocks.finished = true;");
+      console.log("2 incorrect");
   } else if (allResponses.slice(-2).reduce((a,b)=>a+b) === 2) {
       trials.finished = true;
-      print("trials.finished = true;");
+      blocks.finished = false;
+      console.log("2 correct");
       allResponses = [];
+  } else {
+      trials.finished = false;
+      blocks.finished = false;
   }
   return Scheduler.Event.NEXT;
 }
