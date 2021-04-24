@@ -97,9 +97,9 @@ var pres_text;
 var RecallClock;
 var recall_text;
 var key_resp_2;
+var inputDisplay;
 var allResponses;
-var current_resp;
-var pts_response;
+var inputText;
 var FeedbackClock;
 var feedback_text;
 var rngClock;
@@ -164,19 +164,21 @@ function experimentInit() {
   
   key_resp_2 = new core.Keyboard({psychoJS: psychoJS, clock: new util.Clock(), waitForStart: true});
   
-  // Store responses
-  allResponses = []
-  current_resp = '';
-  pts_response = new visual.TextStim({
+  inputDisplay = new visual.TextStim({
     win: psychoJS.window,
-    name: 'pts_response',
+    name: 'inputDisplay',
     text: '',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.1,  wrapWidth: undefined, ori: 0,
     color: new util.Color('white'),  opacity: 1,
-    depth: -3.0 
+    depth: -2.0 
   });
+  
+  // Store responses
+  allResponses = []
+  inputText = '';
+  
   
   // Initialize components for Routine "Feedback"
   FeedbackClock = new util.Clock();
@@ -553,7 +555,7 @@ function RecallRoutineBegin(snapshot) {
     RecallComponents = [];
     RecallComponents.push(recall_text);
     RecallComponents.push(key_resp_2);
-    RecallComponents.push(pts_response);
+    RecallComponents.push(inputDisplay);
     
     for (const thisComponent of RecallComponents)
       if ('status' in thisComponent)
@@ -563,6 +565,8 @@ function RecallRoutineBegin(snapshot) {
 }
 
 
+var keys;
+var n;
 function RecallRoutineEachFrame(snapshot) {
   return function () {
     //------Loop for each frame of Routine 'Recall'-------
@@ -602,39 +606,43 @@ function RecallRoutineEachFrame(snapshot) {
       }
     }
     
-    if (key_resp_2.keys !== undefined && key_resp_2.keys.length > 0) {
-        if (key_resp_2.keys[key_resp_2.keys.length - 1] === 'backspace') {
-            try {
-                key_resp_2.keys.pop(key_resp_2.keys.length-1);
-                key_resp_2.keys.pop(key_resp_2.keys.length-1);
-            } catch (err) {
-                console.log("No need to backspace")
-            }
-        } else if (key_resp_2.keys[key_resp_2.keys.length - 1] === 'return') {
-            key_resp_2.keys.pop(key_resp_2.keys.length-1);
-            continueRoutine = false;
-        }
-    }
     
-    try {
-        current_resp = key_resp_2.keys.join('');
-    } catch (err) {
-        current_resp = ''
-    }
-    
-    // *pts_response* updates
-    if (t >= 0 && pts_response.status === PsychoJS.Status.NOT_STARTED) {
+    // *inputDisplay* updates
+    if (t >= 0 && inputDisplay.status === PsychoJS.Status.NOT_STARTED) {
       // keep track of start time/frame for later
-      pts_response.tStart = t;  // (not accounting for frame time here)
-      pts_response.frameNStart = frameN;  // exact frame index
+      inputDisplay.tStart = t;  // (not accounting for frame time here)
+      inputDisplay.frameNStart = frameN;  // exact frame index
       
-      pts_response.setAutoDraw(true);
+      inputDisplay.setAutoDraw(true);
     }
 
+    keys = psychoJS.eventManager.getKeys()
+    n = keys.length
+    i = 0
     
-    if (pts_response.status === PsychoJS.Status.STARTED){ // only update if being drawn
-      pts_response.setText(current_resp, false);
+    while (i < n) {
+        
+        if (keys[i].length == 1){
+            inputText += keys[i];
+            i += 1;
+        } else if (keys[i] == 'backspace') {
+            inputText = inputText.slice(0,-1);
+            i += 1;
+        } else if (keys[i] == 'space') {
+            inputText += " ";
+            i += 1;
+        } else if (keys[i] == 'return') {
+            continueRoutine = false;
+            i += 1;
+        } else if (keys[i] == 'escape') {
+            psychoJS.quit();
+            break
+        } else {
+            i += 1;
+        }
+        inputDisplay.setText(inputText);
     }
+    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -680,18 +688,19 @@ function RecallRoutineEnd(snapshot) {
     key_resp_2.stop();
     correct = 0;
     
-    if (Number(current_resp) === digits) {
+    if (Number(inputText) === digits) {
         correct = 1;
         msg = "Correct";
-        psychoJS.experiment.addData("correct", correct)
+        psychoJS.experiment.addData("correct", correct);
     } else {
         msg = "Incorrect";
-        psychoJS.experiment.addData("Incorrect", correct)
+        psychoJS.experiment.addData("Incorrect", correct);
     }
-    psychoJS.experiment.addData("response", current_resp);
+    psychoJS.experiment.addData("response", inputText);
     
-    allResponses.push(correct)
-    pts_response.text = '';
+    allResponses.push(correct);
+    inputText = '';
+    inputDisplay.setText(inputText);
     // the Routine "Recall" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
