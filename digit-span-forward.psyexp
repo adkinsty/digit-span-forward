@@ -178,15 +178,15 @@
         <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="pres_text.text = '';" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="// Convert sequence to list&amp;#10;nList = digits.toString().split('').map((i)=&gt;Number(i));&amp;#10;pres_text.text = '';" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="curr_digit = '';&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="// Convert sequence to list&amp;#10;nList = digits.toString().split('').map((x)=&gt;Number(x));&amp;#10;curr_digit = '';&amp;#10;pres_text.setText(curr_digit);&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="# Convert sequence to list&amp;#10;nList = list(str(digits))&amp;#10;" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="# Convert time to a list index&amp;#10;i = int(np.floor(t-1))&amp;#10;&amp;#10;# Index the current number in the list &amp;#10;# Or end routine if all numbers presented&amp;#10;if i == len(nList):&amp;#10;    continueRoutine = False&amp;#10;else:&amp;#10;    pres_text.text = nList[i]" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="// Convert time ti a list index&amp;#10;i = Math.floor(t-1);&amp;#10;&amp;#10;// Index current number in the list&amp;#10;// or end routine if all numbers presented&amp;#10;if (i === nList.length) {&amp;#10;    continueRoutine = false;&amp;#10;} else {&amp;#10;    pres_text.text = nList[i]&amp;#10;}&amp;#10;&amp;#10;" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="// Convert time to a list index&amp;#10;if (t &gt;= 1) {&amp;#10;    i = Math.floor(t-1);&amp;#10;    pres_text.setText(curr_digit);&amp;#10;&amp;#10;    // Index current number in the list&amp;#10;    // or end routine if all numbers presented&amp;#10;    if (i === nList.length) {&amp;#10;        continueRoutine = false;&amp;#10;    } else {&amp;#10;        curr_digit = nList[i];&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="pres_text.text = ''" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="curr_digit = '';&amp;#10;pres_text.setText(curr_digit);&amp;#10;" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="pres_code" valType="code"/>
@@ -266,7 +266,7 @@
         <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="# Store responses&amp;#10;allResponses = []" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="// Store responses&amp;#10;allResponses = []&amp;#10;inputText = '';&amp;#10;&amp;#10;" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="psychoJS.eventManager.clearKeys();&amp;#10;inputText = '';" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="psychoJS.eventManager.clearKeys();&amp;#10;inputText = '';&amp;#10;inputDisplay.setText(inputText);" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="key_resp_2.rt = []" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="if len(key_resp_2.keys) &gt; 0: #to prevent list index error&amp;#10;    if key_resp_2.keys[-1] == 'backspace': #allow backspacing&amp;#10;        try: #to avoid list index errors when backspacing&amp;#10;            key_resp_2.keys.pop(len(key_resp_2.keys)-1)&amp;#10;            key_resp_2.keys.pop(len(key_resp_2.keys)-1)&amp;#10;        except:&amp;#10;            print('No need to backspace')&amp;#10;    elif key_resp_2.keys[-1] == 'return': #allows return to end routine&amp;#10;        key_resp_2.keys.pop(len(key_resp_2.keys)-1)&amp;#10;        continueRoutine = False&amp;#10;&amp;#10;current_resp = ''.join(key_resp_2.keys)&amp;#10;&amp;#10;" valType="extendedCode"/>
