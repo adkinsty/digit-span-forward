@@ -544,6 +544,8 @@ function RecallRoutineBegin(snapshot) {
     key_resp_2.keys = undefined;
     key_resp_2.rt = undefined;
     _key_resp_2_allKeys = [];
+    psychoJS.eventManager.clearKeys();
+    inputText = '';
     // keep track of which components have finished
     RecallComponents = [];
     RecallComponents.push(recall_text);
