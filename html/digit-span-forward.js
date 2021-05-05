@@ -149,6 +149,7 @@ function experimentInit() {
     depth: -1.0 
   });
   
+  pres_text.text = '';
   // Initialize components for Routine "Recall"
   RecallClock = new util.Clock();
   recall_text = new visual.TextStim({
@@ -435,7 +436,8 @@ function PresentationRoutineBegin(snapshot) {
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
     // Convert sequence to list
-    nList = digits.toString().split('').map((i)=>Number(i))
+    nList = digits.toString().split('').map((i)=>Number(i));
+    pres_text.text = '';
     // keep track of which components have finished
     PresentationComponents = [];
     PresentationComponents.push(fixation);
