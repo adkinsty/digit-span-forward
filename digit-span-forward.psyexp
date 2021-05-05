@@ -170,7 +170,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="" valType="str"/>
+        <Param name="text" updates="constant" val=" " valType="str"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -183,7 +183,7 @@
         <Param name="Begin Routine" updates="constant" val="# Convert sequence to list&amp;#10;nList = list(str(digits))&amp;#10;" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="# Convert time to a list index&amp;#10;i = int(np.floor(t-1))&amp;#10;&amp;#10;# Index the current number in the list &amp;#10;# Or end routine if all numbers presented&amp;#10;if i == len(nList):&amp;#10;    continueRoutine = False&amp;#10;else:&amp;#10;    pres_text.text = nList[i]" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="// Convert time to a list index&amp;#10;if (t &gt;= 1) {&amp;#10;    i = Math.floor(t-1);&amp;#10;    pres_text.setText(curr_digit);&amp;#10;&amp;#10;    // Index current number in the list&amp;#10;    // or end routine if all numbers presented&amp;#10;    if (i === nList.length) {&amp;#10;        continueRoutine = false;&amp;#10;    } else {&amp;#10;        curr_digit = nList[i];&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="// Convert time to a list index&amp;#10;if (t &gt;= 1) {&amp;#10;    i = Math.floor(t-1);&amp;#10;    pres_text.setText(curr_digit);&amp;#10;&amp;#10;    // Index current number in the list&amp;#10;    // or end routine if all numbers presented&amp;#10;    if (i === nList.length) {&amp;#10;        continueRoutine = false;&amp;#10;    } else {&amp;#10;        curr_digit = nList[i];&amp;#10;    }&amp;#10;}" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Routine" updates="constant" val="curr_digit = '';&amp;#10;pres_text.setText(curr_digit);&amp;#10;" valType="extendedCode"/>

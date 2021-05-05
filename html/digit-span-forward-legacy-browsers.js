@@ -83,6 +83,7 @@ var key_resp;
 var PresentationClock;
 var fixation;
 var pres_text;
+var curr_digit;
 var RecallClock;
 var recall_text;
 var key_resp_2;
@@ -130,7 +131,7 @@ function experimentInit() {
   pres_text = new visual.TextStim({
     win: psychoJS.window,
     name: 'pres_text',
-    text: '',
+    text: ' ',
     font: 'Arial',
     units: undefined, 
     pos: [0, 0], height: 0.1,  wrapWidth: undefined, ori: 0,
@@ -138,7 +139,8 @@ function experimentInit() {
     depth: -1.0 
   });
   
-  pres_text.text = '';
+  curr_digit = '';
+  
   // Initialize components for Routine "Recall"
   RecallClock = new util.Clock();
   recall_text = new visual.TextStim({
@@ -428,8 +430,10 @@ function PresentationRoutineBegin(snapshot) {
     continueRoutine = true; // until we're told otherwise
     // update component parameters for each repeat
     // Convert sequence to list
-    nList = digits.toString().split('').map((i)=>Number(i));
-    pres_text.text = '';
+    nList = digits.toString().split('').map((x)=>Number(x));
+    curr_digit = '';
+    pres_text.setText(curr_digit);
+    
     // keep track of which components have finished
     PresentationComponents = [];
     PresentationComponents.push(fixation);
@@ -477,18 +481,19 @@ function PresentationRoutineEachFrame(snapshot) {
       pres_text.setAutoDraw(true);
     }
 
-    // Convert time ti a list index
-    i = Math.floor(t-1);
+    // Convert time to a list index
+    if (t >= 1) {
+        i = Math.floor(t-1);
+        pres_text.setText(curr_digit);
     
-    // Index current number in the list
-    // or end routine if all numbers presented
-    if (i === nList.length) {
-        continueRoutine = false;
-    } else {
-        pres_text.text = nList[i]
+        // Index current number in the list
+        // or end routine if all numbers presented
+        if (i === nList.length) {
+            continueRoutine = false;
+        } else {
+            curr_digit = nList[i];
+        }
     }
-    
-    
     // check for quit (typically the Esc key)
     if (psychoJS.experiment.experimentEnded || psychoJS.eventManager.getKeys({keyList:['escape']}).length > 0) {
       return quitPsychoJS('The [Escape] key was pressed. Goodbye!', false);
@@ -524,7 +529,9 @@ function PresentationRoutineEnd(snapshot) {
         thisComponent.setAutoDraw(false);
       }
     });
-    pres_text.text = ''
+    curr_digit = '';
+    pres_text.setText(curr_digit);
+    
     // the Routine "Presentation" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset();
     
@@ -548,6 +555,7 @@ function RecallRoutineBegin(snapshot) {
     _key_resp_2_allKeys = [];
     psychoJS.eventManager.clearKeys();
     inputText = '';
+    inputDisplay.setText(inputText);
     // keep track of which components have finished
     RecallComponents = [];
     RecallComponents.push(recall_text);
